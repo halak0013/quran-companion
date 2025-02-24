@@ -6,18 +6,24 @@
 #ifndef QURANPAGEBROWSER_H
 #define QURANPAGEBROWSER_H
 
-#include "../globals.h"
-#include "../utils/dbmanager.h"
 #include <QContextMenuEvent>
 #include <QHBoxLayout>
 #include <QMenu>
 #include <QPainter>
+#include <QPointer>
 #include <QPushButton>
 #include <QScrollBar>
 #include <QSettings>
 #include <QShortcut>
 #include <QTextBrowser>
 #include <QTextCursor>
+#include <repository/glyphsrepository.h>
+#include <repository/quranrepository.h>
+#include <service/glyphservice.h>
+#include <service/quranservice.h>
+#include <utils/configuration.h>
+#include <utils/numbertostringconverter.h>
+#include <utils/stylemanager.h>
 
 /**
  * @brief QuranPageBrowser class is a modified QTextBrowser for displaying a
@@ -33,13 +39,15 @@ public:
    */
   enum Action
   {
-    null,          ///< no action (default)
-    play,          ///< select the verse and start playback
-    select,        ///< only select the verse
-    tafsir,        ///< show the tafsir for the verse
-    copy,          ///< copy the verse text to clipboard
-    addBookmark,   ///< add the verse to bookmarks
-    removeBookmark ///< remove the verse from bookmarks
+    Null,          ///< no action (default)
+    Play,          ///< select the verse and start playback
+    Select,        ///< only select the verse
+    Tafsir,        ///< show the tafsir for the verse
+    Translation,   ///< show the translation for the verse
+    Thoughts,      ///< show user thoughts for the verse
+    Copy,          ///< copy the verse text to clipboard
+    AddBookmark,   ///< add the verse to bookmarks
+    RemoveBookmark ///< remove the verse from bookmarks
   };
   /**
    * @brief class constructor
@@ -48,7 +56,6 @@ public:
    * @param initPage - inital page to load
    */
   QuranPageBrowser(QWidget* parent = nullptr, int initPage = 1);
-
   /**
    * @brief sets m_fontSize to the fontsize in the settings file
    */
@@ -67,7 +74,9 @@ public:
    * @param page - page number to generate header for
    * @return QString of the page header without spacing
    */
-  QString pageHeader(int page);
+  QStringList pageHeader(int page);
+  QStringList pageFooter(int page,
+                         std::optional<QPair<int, int>> rubStartingInPage);
   /**
    * @brief construct Quran page
    * @details the page construction process is done through:
@@ -142,23 +151,14 @@ protected:
 #endif
 
 private:
-  QSettings* const m_settings = Globals::settings;
-  const QString& m_bsmlFont = Globals::qcfBSMLFont;
-  const QString& m_fontnamePrefix = Globals::qcfFontPrefix;
-  const int m_qcfVer = Globals::qcfVersion;
-  const bool m_darkMode = Globals::darkMode;
-  DBManager* m_dbMgr = qobject_cast<DBManager*>(Globals::databaseManager);
-  fa::QtAwesome* m_fa = Globals::awesome;
+  Configuration& m_config;
+  StyleManager& m_styleMgr;
+  const QuranService* m_quranService;
+  const GlyphService* m_glyphService;
   /**
    * @brief utility for creating menu actions for interacting with the widget
    */
   void createActions();
-  /**
-   * @brief adjusts the header string according to the page width
-   * @param baseHeader - header string
-   * @return reference to the adjusted string
-   */
-  QString& justifyHeader(QString& baseHeader);
   /**
    * @brief calculate the approximate pixel size of the page line
    * @param lines - QStringList of page lines
@@ -172,6 +172,18 @@ private:
    * @return QImage of the surah frame
    */
   QImage surahFrame(int surah);
+  /**
+   * @brief utility to set the href url for the text from the current cursor
+   * position to the position given
+   * @param cursor - pointer to the current QTextCursor used for inserting text
+   * @param to  - the position in document to stop at
+   * @param url - url to set for the selected portion
+   * @return int - the current cursor postion
+   */
+  int setHref(QTextCursor* cursor, int to, QString url);
+
+  int insertHeader(QTextCursor*, int);
+  void insertFooter(QTextCursor*, int);
   /**
    * @brief boolean indicating whether to highlight the foreground of the active
    * verse or not
@@ -201,7 +213,8 @@ private:
   /**
    * @brief QString of the page header
    */
-  QString m_currPageHeader;
+  QStringList m_currHeaderSegments;
+  QStringList m_currFooterSegments;
   /**
    * @brief mouse position relative to the widget
    */
@@ -217,39 +230,51 @@ private:
   /**
    * @brief QAction for zoom-in functionality
    */
-  QAction* m_zoomIn;
+  QPointer<QAction> m_actZoomIn;
   /**
    * @brief QAction for zoom-out functionality
    */
-  QAction* m_zoomOut;
+  QPointer<QAction> m_actZoomOut;
   /**
    * @brief QAction for copy functionality
    */
-  QAction* m_copyAct;
+  QPointer<QAction> m_actCopy;
   /**
    * @brief QAction for verse selection functionality
    */
-  QAction* m_selectAct;
+  QPointer<QAction> m_actSelect;
   /**
    * @brief QAction for verse playback functionality
    */
-  QAction* m_playAct;
+  QPointer<QAction> m_actPlay;
   /**
    * @brief QAction for showing tafsir functionality
    */
-  QAction* m_tafsirAct;
+  QPointer<QAction> m_actTafsir;
+  /**
+   * @brief m_actTranslation
+   *
+   * MODIFIED
+   */
+  QPointer<QAction> m_actTranslation;
+  /**
+   * @brief m_actThoughts
+   *
+   * MODIFIED
+   */
+  QPointer<QAction> m_actThoughts;
   /**
    * @brief QAction for bookmark addition functionality
    */
-  QAction* m_actAddBookmark;
+  QPointer<QAction> m_actAddBookmark;
   /**
    * @brief QAction for bookmark removal functionality
    */
-  QAction* m_actRemBookmark;
+  QPointer<QAction> m_actRemBookmark;
   /**
    * @brief QTextCursor used in highlighting verses
    */
-  QTextCursor* m_highlighter;
+  QSharedPointer<QTextCursor> m_highlighter;
   /**
    * @brief page format properties used in inserting lines
    */
@@ -257,7 +282,7 @@ private:
   /**
    * @brief character format used for header font properties
    */
-  QTextCharFormat m_headerTextFormat;
+  QTextCharFormat m_pageInfoTextFormat;
   /**
    * @brief character format used for main page text font properties
    */
@@ -270,11 +295,9 @@ private:
    * @brief QList of integer arrays of start & end position for each verse in
    * the current page
    */
-  QList<int*> m_pageVerseCoords;
-  /**
-   * @brief Hash Table used for converting page number to arabic numbers
-   */
-  QHash<QString, QString> m_easternNumsMap;
+  QList<QPair<int, int>> m_verseCoordinates;
+  QPair<int, int> m_headerData;
+  NumberToStringConverter m_stringConverter;
 };
 
 #endif // QURANPAGEBROWSER_H

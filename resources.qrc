@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>resources/about.html</file>
         <file>resources/basmalah.png</file>
         <file>resources/dark/dark.qss</file>
         <file>resources/dark/dark.xml</file>
@@ -16,5 +15,11 @@
         <file>resources/splash.png</file>
         <file>resources/sura_box.png</file>
         <file>resources/tray.png</file>
+        <file>resources/files.xml</file>
+    </qresource>
+    <qresource prefix="/qtbase">
+        <file alias="ar.qm">dist/translations/qtbase/ar.qm</file>
+        <file alias="ru.qm">dist/translations/qtbase/ru.qm</file>
+        <file alias="tr.qm">dist/translations/qtbase/tr.qm</file>
     </qresource>
 </RCC>

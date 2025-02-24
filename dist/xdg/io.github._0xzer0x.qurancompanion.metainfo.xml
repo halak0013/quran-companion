@@ -2,44 +2,181 @@
 <component type="desktop-application">
   <id>io.github._0xzer0x.qurancompanion</id>
   <name>Quran Companion</name>
-  <summary>Cross-platform desktop offline Quran reader &amp; player</summary>
+  <summary>Read and listen to the Quran</summary>
   <metadata_license>MIT</metadata_license>
   <project_license>LGPL-3.0-or-later</project_license>
-  <content_rating type="oars-1.1" />
+  <content_rating type="oars-1.1"></content_rating>
+  <keywords>
+    <keyword>Quran</keyword>
+    <keyword>Islam</keyword>
+    <keyword>Tafsir</keyword>
+    <keyword>Recitation</keyword>
+  </keywords>
   <description>
-    <p>
-      Quran Companion is a cross-platform Quran reader &amp; listener with recitation download capabilities, verse highlighting, resizable quran font, and a variety of tafsir books &amp; translations
-    </p>
+    <p>Quran Companion is a cross-platform Quran reader and player with recitation download capabilities, verse highlighting, resizable quran font, and a variety of tafsir books and translations</p>
   </description>
+  <branding>
+    <color scheme_preference="light" type="primary">#8ab4f8</color>
+    <color scheme_preference="dark" type="primary">#8ab4f8</color>
+  </branding>
+  <developer id="io.github._0xzer0x">
+    <name>Youssef Fathy</name>
+  </developer>
   <launchable type="desktop-id">io.github._0xzer0x.qurancompanion.desktop</launchable>
-  <url type="homepage">https://github.com/0xzer0x/quran-companion</url>
+  <url type="homepage">https://0xzer0x.github.io/projects/quran-companion</url>
+  <url type="vcs-browser">https://github.com/0xzer0x/quran-companion</url>
+  <url type="bugtracker">https://github.com/0xzer0x/quran-companion/issues</url>
   <url type="translate">https://crowdin.com/project/quran-companion</url>
-  <url type="contact">https://github.com/0xzer0x/quran-companion</url>
-  <url type="bugtracker">https://github.com/0xzer0x/quran-companion/issues</url>	
-
+  <url type="contact">https://0xzer0x.github.io/contact</url>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/light.png</image>
+      <caption>The main application window in light theme.</caption>
+      <image type="source">https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/light.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/dark.png</image>
+      <caption>The main application window in two page mode.</caption>
+      <image type="source">https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/two-pages.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/sepia.png</image>
+      <caption>The main application window in dark theme.</caption>
+      <image type="source">https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/dark.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/ar_light.png</image>
+      <caption>The main application window in sepia theme.</caption>
+      <image type="source">https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/sepia.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/ar_dark.png</image>
+      <caption>The main application window in light theme with Arabic UI.</caption>
+      <image type="source">https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/ar_light.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/ar_two-page.png</image>
+      <caption>The main application window in dark theme with Arabic UI.</caption>
+      <image type="source">https://raw.githubusercontent.com/0xzer0x/quran-companion/main/screenshots/ar_dark.png</image>
     </screenshot>
   </screenshots>
-
   <releases>
-    <release version="1.2.0" date="2024-01-01">
+    <release date="2024-11-18" version="1.3.2">
+      <description>
+        <ul>
+          <li>Bug fixes for QCF v2 font</li>
+          <li>Bug fix for issue with the translation of Tafsir names</li>
+          <li>Added the Ayat font for Warsh 'an Nafi' narration</li>
+          <li>New reciter Ibrahim Al-Dosari (Warsh)</li>
+          <li>New reciter Yassine Al-Jazairi (Warsh)</li>
+          <li>Added saving of the state of the menu bar (visible/hidden)</li>
+          <li>Updating Qt to version 6.8</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-11-06" version="1.3.1">
+      <description>
+        <ul>
+          <li>Added Indonesian UI translation</li>
+          <li>Upgrade to Qt 6.7</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-09-05" version="1.3.0">
+      <description>
+        <ul>
+          <li>Move all downloadable content to a different location</li>
+          <li>Fix bug in the consistency of the selected content</li>
+          <li>Use the same source for English overview of surah</li>
+          <li>Changes the shadows of UI components</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-08-24" version="1.2.9">
+      <description>
+        <ul>
+          <li>Customizable downloads path</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-06-25" version="1.2.8">
+      <description>
+        <ul>
+          <li>Bugfix in repeater widget positioning</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-06-22" version="1.2.7">
+      <description>
+        <ul>
+          <li>Added verse group repeat feature</li>
+          <li>Added Asbab al-Nuzul - Al-Wahidi</li>
+          <li>Added Hadayat al-Quran - Maʿalim al-Tadabbur</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-06-01" version="1.2.6">
+      <description>
+        <ul>
+          <li>Russian UI translation</li>
+          <li>Bug fixes in Juz navigation</li>
+          <li>Added displaying of rub and hizb in the Quran page footer</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-05-03" version="1.2.5">
+      <description>
+        <ul>
+          <li>Added recitations menu in downloads manager for a more clear UI</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-03-05" version="1.2.4">
+      <description>
+        <ul>
+          <li>Bugfixes</li>
+          <li>Added Pickthall - English translation</li>
+          <li>Disabled Auto-play when navigating to a Surah</li>
+          <li>Added Thoughts feature</li>
+          <li>Changed tafsir dialog to display all available content types (tafsir, translation, thoughts)</li>
+          <li>Move tafsir setting to content dialog</li>
+          <li>Added user data import/export functionality</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-01-25" version="1.2.3">
+      <description>
+        <ul>
+          <li>Bugfixes</li>
+          <li>Added different fonts for displaying verses</li>
+          <li>Added annotated Hafs verse text</li>
+          <li>Move QCF 2 font files out of application bundle and added option to download it (Reduced bundle size)</li>
+          <li>Move tafsir and translation files out of the application bundle and added option to download any one of them (Reduced bundle size)</li>
+          <li>Added Surah card functionality (Accessed by clicking the Surah frame/clicking the Surah name in the page header)</li>
+          <li>Added new shortcut to hide player controls</li>
+          <li>Replaced the dynamic resizing of reader panels with panel toggling functionality</li>
+          <li>Added Tafsir Al-Jalalayn (English)</li>
+          <li>Better About dialog</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-01-24" version="1.2.2">
+      <description>
+        <ul>
+          <li>Added different fonts for displaying verses</li>
+          <li>Added annotated Hafs verse text</li>
+          <li>Move QCF 2 font files out of application bundle and added option to download it (Reduced bundle size)</li>
+          <li>Move tafsir and translation files out of the application bundle and added option to download any one of them (Reduced bundle size)</li>
+          <li>Added Surah card functionality (Accessed by clicking the Surah frame/clicking the Surah name in the page header)</li>
+          <li>Added new shortcut to hide player controls</li>
+          <li>Replaced the dynamic resizing of reader panels with panel toggling functionality</li>
+          <li>Added Tafsir Al-Jalalayn (English)</li>
+          <li>Better About dialog</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-01-03" version="1.2.1">
+      <description>
+        <ul>
+          <li>Bugfixes</li>
+        </ul>
+      </description>
+    </release>
+    <release date="2024-01-01" version="1.2.0">
       <description>
         <ul>
           <li>Türkçe (Turkish) UI translation by @halak0013 🎉</li>
@@ -49,7 +186,7 @@
         </ul>
       </description>
     </release>
-    <release version="1.1.11" date="2023-12-03">
+    <release date="2023-12-03" version="1.1.11">
       <description>
         <ul>
           <li>Bugfix</li>
@@ -59,51 +196,50 @@
         </ul>
       </description>
     </release>
-    <release version="1.1.10" date="2023-10-15">
+    <release date="2023-10-15" version="1.1.10">
       <description>
-          <ul>
-            <li>Hotfixes</li>
-          </ul>
+        <ul>
+          <li>Hotfixes</li>
+        </ul>
       </description>
     </release>
-    <release version="1.1.9" date="2023-10-13">
+    <release date="2023-10-13" version="1.1.9">
       <description>
-          <ul>
-            <li>Sepia theme added</li>
-            <li>zoom in/out shortcuts added</li>
-            <li>Bug fixes</li>
-          </ul>
+        <ul>
+          <li>Sepia theme added</li>
+          <li>zoom in/out shortcuts added</li>
+          <li>Bug fixes</li>
+        </ul>
       </description>
     </release>
-    <release version="1.1.8" date="2023-09-15">
+    <release date="2023-09-15" version="1.1.8">
       <description>
-          <ul>
-            <li>Two-page mode added</li>
-            <li>Customizable shortcuts feature</li>
-            <li>English Tafsir Ibn-Katheer added</li>
-            <li>Abdullah Yusuf Ali English Translation added</li>
-          </ul>
+        <ul>
+          <li>Two-page mode added</li>
+          <li>Customizable shortcuts feature</li>
+          <li>English Tafsir Ibn-Katheer added</li>
+          <li>Abdullah Yusuf Ali English Translation added</li>
+        </ul>
       </description>
     </release>
-    <release version="1.1.7" date="2023-07-16">
+    <release date="2023-07-16" version="1.1.7">
       <description>
-          <ul>
-            <li>Bugfixes</li>
-          </ul>
-      </description>  
-    </release>
-    <release version="1.1.6" date="2023-07-15">
-      <description>
-          <ul>
-            <li>Recitation downloading bugs fixed</li>
-            <li>On-screen notifications for download status &amp; other actions</li>
-            <li>Updated Quran page header font</li>
-            <li>Bookmark the current verse through Ctrl+Shift+B</li>
-            <li>Platform-independent Update checking</li>
-          </ul>
+        <ul>
+          <li>Bugfixes</li>
+        </ul>
       </description>
     </release>
-    <release version="1.1.5" date="2023-06-25">
+    <release date="2023-07-15" version="1.1.6">
+      <description>
+        <ul>
+          <li>Recitation downloading bugs fixed</li>
+          <li>On-screen notifications for download status &amp; other actions</li>
+          <li>Updated Quran page header font</li>
+          <li>Bookmark the current verse through Ctrl+Shift+B</li>
+          <li>Platform-independent Update checking</li>
+        </ul>
+      </description>
     </release>
+    <release date="2023-06-25" version="1.1.5"></release>
   </releases>
 </component>

@@ -7,6 +7,8 @@
 #define DOWNLOADPROGRESSBAR_H
 
 #include <QProgressBar>
+#include <downloader/downloadjob.h>
+typedef DownloadJob::Type Type;
 
 /**
  * @brief DownloadProgressBar class is a modified QProgressBar to change its
@@ -14,6 +16,7 @@
  */
 class DownloadProgressBar : public QProgressBar
 {
+  Q_OBJECT
 public:
   /**
    * @brief class constructor
@@ -21,7 +24,7 @@ public:
    * @param max - maximum value for the progress bar (defaults to longest surah
    * in the Quran)
    */
-  DownloadProgressBar(QWidget* parent = nullptr, int max = 286);
+  DownloadProgressBar(QWidget* parent, Type type, int max);
   /**
    * @brief The State enum represents the different states of the progressbar UI
    * component
@@ -34,11 +37,13 @@ public:
   };
 
 public slots:
-  void updateProgress(qint64 downloaded, qint64 total);
   void setStyling(State);
+  void updateProgress(QSharedPointer<DownloadJob> job);
+  void finished();
+  void failed();
 
 private:
-  QString m_defStylesheet;
+  Type m_type;
 };
 
 #endif // DOWNLOADPROGRESSBAR_H

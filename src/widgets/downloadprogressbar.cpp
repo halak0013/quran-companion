@@ -4,48 +4,70 @@
  */
 
 #include "downloadprogressbar.h"
+#include <QApplication>
+#include <QPointer>
+#include <QStyle>
 
-DownloadProgressBar::DownloadProgressBar(QWidget* parent, int max)
+DownloadProgressBar::DownloadProgressBar(QWidget* parent, Type type, int max)
   : QProgressBar(parent)
+  , m_type(type)
 {
-  m_defStylesheet = "QProgressBar {text-align: center; "
-                    "color: palette(text); border-radius: 3px; border: 1px "
-                    "solid palette(button); }";
   setStyling(downloading);
-  setFormat("%v / %m");
   setMaximum(max);
   setValue(0);
+  if (m_type == DownloadJob::TafsirFile ||
+      m_type == DownloadJob::TranslationFile)
+    setFormat("%v / %m " + qApp->translate("DownloadManager", "KB"));
+  else
+    setFormat("%v / %m");
 }
 
 void
-DownloadProgressBar::updateProgress(qint64 downloaded, qint64 total)
+DownloadProgressBar::updateProgress(QSharedPointer<DownloadJob> job)
 {
-  if (maximum() != total)
-    setMaximum(total);
+  if (maximum() != job->total())
+    setMaximum(job->total());
 
-  setValue(downloaded);
+  setValue(job->completed());
+}
+
+void
+DownloadProgressBar::finished()
+{
+  if (m_type == DownloadJob::TafsirFile ||
+      m_type == DownloadJob::TranslationFile) {
+    setValue(1);
+    setMaximum(1);
+  }
+  setFormat("%v / %m");
+}
+
+void
+DownloadProgressBar::failed()
+{
+  if (m_type == DownloadJob::TafsirFile ||
+      m_type == DownloadJob::TranslationFile) {
+    setValue(0);
+    setMaximum(1);
+  }
+  setFormat("%v / %m");
 }
 
 void
 DownloadProgressBar::setStyling(State downState)
 {
-  QString ss = m_defStylesheet;
   switch (downState) {
     case downloading:
       break;
     case completed:
-      ss.append(
-        " QProgressBar::chunk "
-        "{border-radius:2px; background-color: qlineargradient(x1:0, y1:0, "
-        "x2:0, y2:1, stop:0.5 #00a57f, stop:1 #00916f);}");
+      setProperty("progress-state", 1);
       break;
     case aborted:
-      ss.append(
-        " QProgressBar::chunk "
-        "{border-radius:2px; background-color: qlineargradient(x1:0, y1:0, "
-        "x2:0, y2:1, stop:0.5 #a50500, stop:1 #930400);}");
+      setProperty("progress-state", 2);
       break;
   }
 
-  setStyleSheet(ss);
+  style()->unpolish(this);
+  style()->polish(this);
+  update();
 }

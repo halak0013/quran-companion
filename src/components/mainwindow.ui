@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1392</width>
+    <height>955</height>
+   </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::ClickFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Quran Companion</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normalon>:/resources/logo.ico</normalon>
+   </iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialogButtonBox { dialogbuttonbox-buttons-have-icons: true; dialog-apply-icon: off; dialog-cancel-icon: off; dialog-ok-icon: off; dialog-yes-icon: off; dialog-no-icon: off; }</string>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::ForceTabbedDocks</set>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1151</width>
+         <height>933</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="scrollLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1392</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <property name="separatorsCollapsible">
+     <bool>false</bool>
+    </property>
+    <addaction name="actionFind"/>
+    <addaction name="actionTafsir"/>
+    <addaction name="actionAdvancedCopy"/>
+    <addaction name="actionVOTD"/>
+    <addaction name="separator"/>
+    <addaction name="actionReaderViewToggle"/>
+    <addaction name="actionPlayerControls"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionBookmarks"/>
+    <addaction name="actionKhatmah"/>
+    <addaction name="separator"/>
+    <addaction name="actionPereferences"/>
+   </widget>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionDownloadManager"/>
+    <addaction name="separator"/>
+    <addaction name="actionImport"/>
+    <addaction name="actionExport"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionUpdates"/>
+    <addaction name="separator"/>
+    <addaction name="actionAboutQC"/>
+    <addaction name="actionAboutQt"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QDockWidget" name="sideDock">
+   <property name="minimumSize">
+    <size>
+     <width>240</width>
+     <height>204</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>240</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Navigation</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="sideDockWidget">
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Juz</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cmbJuz">
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+         <item>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">2</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">3</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">4</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">5</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">6</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">7</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">8</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">9</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">10</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">11</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">12</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">13</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">14</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">15</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">16</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">17</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">18</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">19</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">20</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">21</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">22</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">23</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">24</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">25</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">26</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">27</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">28</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">29</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string notr="true">30</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Page</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cmbPage">
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblVerse">
+         <property name="text">
+          <string>Verse</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="cmbVerse">
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditSearchSurah">
+       <property name="styleSheet">
+        <string notr="true">QLineEdit{ placeholder-text-color: #c0c0c0; }</string>
+       </property>
+       <property name="placeholderText">
+        <string>Search surah</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QListView" name="listViewSurahs">
+       <property name="cursor" stdset="0">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="showDropIndicator" stdset="0">
+        <bool>false</bool>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="resizeMode">
+        <enum>QListView::Fixed</enum>
+       </property>
+       <property name="uniformItemSizes">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionPereferences">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/prefs.png</normaloff>:/resources/prefs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionDownloadManager">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/download-manager.png</normaloff>:/resources/download-manager.png</iconset>
+   </property>
+   <property name="text">
+    <string>Download manager</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset theme="window-close">
+     <normalon>:/resources/exit.png</normalon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionFind">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/resources/search.png</normaloff>:/resources/search.png</iconset>
+   </property>
+   <property name="text">
+    <string>Find</string>
+   </property>
+  </action>
+  <action name="actionUpdates">
+   <property name="text">
+    <string>Check for updates</string>
+   </property>
+  </action>
+  <action name="actionBookmarks">
+   <property name="text">
+    <string>Bookmarks</string>
+   </property>
+  </action>
+  <action name="actionAboutQC">
+   <property name="text">
+    <string>About Quran Companion</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::TextHeuristicRole</enum>
+   </property>
+  </action>
+  <action name="actionAboutQt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="actionTafsir">
+   <property name="text">
+    <string>Tafsir</string>
+   </property>
+  </action>
+  <action name="actionVOTD">
+   <property name="text">
+    <string>Verse of the day</string>
+   </property>
+  </action>
+  <action name="actionKhatmah">
+   <property name="text">
+    <string>Khatmah</string>
+   </property>
+  </action>
+  <action name="actionAdvancedCopy">
+   <property name="text">
+    <string>Advanced copy</string>
+   </property>
+  </action>
+  <action name="actionReaderViewToggle">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Toggle reader view</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="text">
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+  <action name="actionPlayerControls">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Player controls</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
